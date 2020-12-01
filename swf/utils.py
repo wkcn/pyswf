@@ -2,34 +2,42 @@ from __future__ import absolute_import
 from .consts import BitmapType
 import math
 
+def python2round(f):
+    """
+    use python2 round function in python3
+    """
+    if round(f + 1) - round(f) != 1:
+        return f + abs(f) / f * 0.5
+    return round(f)
+
 class NumberUtils(object):
     @classmethod
     def round_pixels_20(cls, pixels):
-        return round(pixels * 100) / 100
+        return python2round(pixels * 100) / 100
     @classmethod
     def round_pixels_400(cls, pixels):
-        return round(pixels * 10000) / 10000
- 
+        return python2round(pixels * 10000) / 10000
+
 class ColorUtils(object):
     @classmethod
     def alpha(cls, color):
         return int(color >> 24) / 255.0
-    
+
     @classmethod
     def rgb(cls, color):
         return (color & 0xffffff)
-    
+
     @classmethod
     def to_rgb_string(cls, color):
         c = "%x" % color
         while len(c) < 6: c = "0" + c
         return "#"+c
-        
+
 class ImageUtils(object):
     @classmethod
     def get_image_size(cls, data):
         pass
-        
+
     @classmethod
     def get_image_type(cls, data):
         pos = data.tell()

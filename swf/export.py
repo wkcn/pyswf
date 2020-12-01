@@ -534,8 +534,8 @@ class SVGExporter(BaseExporter):
         # Setup svg @width, @height and @viewBox
         # and add the optional margin
         self.bounds = SVGBounds(self.svg)
-        self.svg.set("width", "%dpx" % round(self.bounds.width))
-        self.svg.set("height", "%dpx" % round(self.bounds.height))
+        self.svg.set("width", "%dpx" % python2round(self.bounds.width))
+        self.svg.set("height", "%dpx" % python2round(self.bounds.height))
         if self._margin > 0:
             self.bounds.grow(self._margin)
         vb = [self.bounds.minx, self.bounds.miny,
@@ -978,8 +978,8 @@ class SVGFilterFactory(object):
         offset = e.feOffset()
         if attr_in is not None:
             offset.set("in", attr_in)
-        offset.set("dx", "%d" % round(dx))
-        offset.set("dy", "%d" % round(dy))
+        offset.set("dx", "%d" % python2round(dx))
+        offset.set("dy", "%d" % python2round(dy))
         if result is not None:
             offset.set("result", result)
         return offset
