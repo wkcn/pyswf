@@ -7,7 +7,7 @@ def python2round(f):
     use python2 round function in python3
     """
     if round(f + 1) - round(f) != 1:
-        return f + abs(f) / f * 0.5
+        return int(f + abs(f) / f * 0.5)
     return round(f)
 
 class NumberUtils(object):
